@@ -4,7 +4,6 @@ author: "Sage Roy-Burman"
 format: html
 ---
 
-```{r}
 library(hoopR)
 library(dplyr)
 library(ggplot2)
@@ -63,9 +62,9 @@ clean <- raw %>%
 
 train <- clean %>%
   filter(year == 2026, conf_tourn == FALSE)
-```
 
-```{r}
+
+
 # ── Step 2: Build Harville model design matrix ────────────────────
 
 all_teams <- sort(unique(c(train$HomeTeam, train$AwayTeam)))
@@ -103,9 +102,9 @@ strengths <- c(
 ranking <- sort(strengths, decreasing = TRUE)
 
 head(ranking, 10)
-```
 
-```{r}
+
+
 # ── Step 3: Conformal win probability function ───────────────
 # Only evaluates yc = 0, because P(win) = P(MOV > 0) = 1 - pi(0)
 
@@ -148,9 +147,9 @@ conformal_wp_fast <- function(home_team, away_team, X, y, tau = 0.5) {
   
   return(win_prob)
 }
-```
 
-```{r}
+
+
 # ── Step 4: Manual Round of 64 bracket order ──────────────────────
 # Have to make sure row 1 winner plays row 2 winner, row 3 winner plays row 4 winner, etc.
 
@@ -205,9 +204,8 @@ print(missing_from_X)
 
 cat("Baseline team:", baseline_team, "\n")
 
-```
 
-```{r}
+
 # ── Step 6: Precompute all pairwise win probabilities ─────────────
 
 all_bracket_teams <- unique(c(round64_manual$team1, round64_manual$team2))
@@ -285,9 +283,9 @@ win_probs_df <- data.frame(
 )
 
 head(win_probs_df, 10)
-```
 
-```{r}
+
+
 # ── Step 10: Plot top teams ───────────────────────────────────────
 
 win_probs_df %>%
@@ -303,9 +301,9 @@ win_probs_df %>%
     subtitle = "Conformal Probabilities | 2025-26 regular season data"
   ) +
   theme_minimal()
-```
 
-```{r}
+
+
 # ── Step 11: Check actual winner ──────────────────────────────────
 
 actual_winner <- "Michigan"
@@ -323,4 +321,3 @@ if (is.na(predicted_rank)) {
   cat("Predicted rank:", predicted_rank, "out of", nrow(win_probs_df), "\n")
   cat("Predicted championship probability:", round(predicted_prob * 100, 1), "%\n")
 }
-```
