@@ -27,7 +27,7 @@ diff = home score - away score
 
 Each game is represented using a design matrix where the home team receives a +1, the away team receives a -1, and one team is dropped as a baseline. The model also gives a home-court indicator for non-neutral games. 
 
-After estimating team strenghts, the project uses conformal prediction to generate win probabilities for neutral-site tournament games. These probabilities are then used in Monte Carlo simulation.
+After estimating team strengths, the project uses conformal prediction to generate win probabilities for neutral-site tournament games. These probabilities are then used in Monte Carlo simulation.
 
 ## Tournament Simulation
 
@@ -59,10 +59,10 @@ Key outputs include:
 
 ## Packages Used
 
-library(hoopR);
-library(dplyr);
-library(ggplot2);
-library(scales)
+`library(hoopR)`;
+`library(dplyr)`;
+`library(ggplot2)`;
+`library(scales)`
 
 ## Possible Extensions
 
